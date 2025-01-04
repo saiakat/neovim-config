@@ -12,8 +12,11 @@ local on_attach = function (_ , _)
     
 end
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 require("lspconfig").lua_ls.setup({
     on_attach = on_attach,
+    capabilities = capabilities,
     settings = {
         Lua = {
             diagnostics = {
@@ -25,11 +28,13 @@ require("lspconfig").lua_ls.setup({
 
 require("lspconfig").clangd.setup({
     on_attach = on_attach,
+    capabilities = capabilities,
     cmd = { "clangd", "--background-index" },
 })
 
 require("lspconfig").ts_ls.setup({
     on_attach = on_attach,
+    capabilities = capabilities,
     settings = {
         codeActionOnSave = {
             enable = true,
@@ -41,4 +46,9 @@ require("lspconfig").ts_ls.setup({
             tsconfig = "tsconfig.json",
         },
     },
+})
+
+require("lspconfig").html.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
 })
