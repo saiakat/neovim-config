@@ -4,12 +4,12 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup({
   mapping = cmp.mapping.preset.insert({
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-o>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    }),
+    ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<C-o>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<C-Space>'] = cmp.mapping.confirm({ select = true }),
+  }),
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
@@ -21,4 +21,13 @@ cmp.setup({
   }, {
     { name = 'buffer' },
   }),
+  enabled = function()
+    local context = require('cmp.config.context')
+    -- Disable completion in comments
+    if context.in_treesitter_capture("comment") == true or context.in_syntax_group("Comment") then
+      return false
+    else
+      return true
+    end
+  end,
 })

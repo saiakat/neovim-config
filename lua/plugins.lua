@@ -5,6 +5,7 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
     use "folke/tokyonight.nvim"
+    use { 'rose-pine/neovim', as = 'rose-pine' }
     use { "catppuccin/nvim", as = "catppuccin" }
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
     use 'nvim-tree/nvim-tree.lua'
@@ -19,7 +20,6 @@ return require('packer').startup(function(use)
     -- completion
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lsp'
-    use 'L3MON4D3/LuaSnip'
     use 'saadparwaiz1/cmp_luasnip'
     use 'L3MON4D3/LuaSnip'
     use 'rafamadriz/friendly-snippets'

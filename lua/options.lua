@@ -49,3 +49,10 @@ opt.history = 100     -- Remember N lines in history
 opt.lazyredraw = true -- Faster scrolling
 opt.synmaxcol = 240   -- Max column for syntax highlight
 opt.updatetime = 250  -- ms to wait for trigger an event
+-----------------------------------------------------------
+-- Searching 
+-----------------------------------------------------------
+opt.incsearch = true
+opt.hlsearch = false
+opt.ignorecase = true
+opt.smartcase = true
