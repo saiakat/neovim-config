@@ -57,3 +57,15 @@ require("lspconfig").zls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
 })
+
+--lsp for go
+require("lspconfig").gopls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+--lsp for css
+require("lspconfig").cssls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
