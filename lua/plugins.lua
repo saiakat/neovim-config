@@ -1,28 +1,44 @@
 -- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
 
-return require('packer').startup(function(use)
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
-    use "folke/tokyonight.nvim"
-    use { 'rose-pine/neovim', as = 'rose-pine' }
-    use { "catppuccin/nvim", as = "catppuccin" }
-    use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
-    use 'nvim-tree/nvim-tree.lua'
-    use 'nvim-tree/nvim-web-devicons'
-    use 'nvim-lualine/lualine.nvim'
-    use { "nvim-telescope/telescope.nvim",
-    requires = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" } }
-    use { "williamboman/mason.nvim",
+return require('lazy').setup({
+    "folke/tokyonight.nvim",
+    {'rose-pine/neovim', as = 'rose-pine'},
+    {"catppuccin/nvim", as = "catppuccin"},
+
+    {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+    'nvim-tree/nvim-tree.lua',
+    'nvim-tree/nvim-web-devicons',
+    'nvim-lualine/lualine.nvim',
+
+    {"nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" }
+    },
+    { "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
-        "neovim/nvim-lspconfig", }
+        "neovim/nvim-lspconfig"
+    },
 
     -- completion
-    use 'hrsh7th/nvim-cmp'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'saadparwaiz1/cmp_luasnip'
-    use 'L3MON4D3/LuaSnip'
-    use 'rafamadriz/friendly-snippets'
-    use 'github/copilot.vim'
-    require('packer').sync()
-end)
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-nvim-lsp',
+    'saadparwaiz1/cmp_luasnip',
+    'L3MON4D3/LuaSnip',
+    'rafamadriz/friendly-snippets',
+    'github/copilot.vim',
+})
