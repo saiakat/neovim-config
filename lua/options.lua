@@ -21,7 +21,7 @@ opt.completeopt = 'menuone,noinsert,noselect' -- Autocomplete options
 -- Neovim UI
 -----------------------------------------------------------
 opt.number = true             -- Show line number
-vim.opt.relativenumber = true -- add numbers to each line on the left side
+opt.relativenumber = true -- add numbers to each line on the left side
 opt.showmatch = true          -- Highlight matching parenthesis
 opt.foldmethod = 'marker'     -- Enable folding (default 'foldmarker')
 opt.colorcolumn = '80'        -- Line lenght marker at 80 columns
@@ -56,3 +56,5 @@ opt.incsearch = true
 opt.hlsearch = false
 opt.ignorecase = true
 opt.smartcase = true
+
+vim.diagnostic.config({ virtual_text = true })  
