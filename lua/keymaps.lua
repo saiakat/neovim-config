@@ -32,6 +32,5 @@ vim.keymap.set('v', '>', '>gv', opts)
 -- Add tab in front of all selected lines
 vim.keymap.set('v', '<Tab>', '>gv', opts)
 vim.keymap.set('v', '<S-Tab>', '<gv', opts)
--------
--- Comment out selected lines
-vim.keymap.set('v', '<C-/>', ':s/^/-- /<CR>', opts)
+
+vim.keymap.set('v', '<C-\\>', ':s/^/\\/\\/ <CR>', opts)
