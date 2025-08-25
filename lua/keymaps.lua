@@ -32,3 +32,7 @@ vim.keymap.set('v', '>', '>gv', opts)
 -- Add tab in front of all selected lines
 vim.keymap.set('v', '<Tab>', '>gv', opts)
 vim.keymap.set('v', '<S-Tab>', '<gv', opts)
+
+-- Shortcuts for boilerplate
+vim.keymap.set('n', '<C-c>1', 'oit(\'\', ()=>{<CR><CR>});<CR><ESC>?\'<CR>i') -- for tests :)
+vim.keymap.set('n', '<C-c>2', 'odescribe(\'\', ()=>{<CR><CR>});<CR><ESC>?\'<CR>iwhen') -- for tests :)
