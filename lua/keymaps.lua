@@ -34,5 +34,6 @@ vim.keymap.set('v', '<Tab>', '>gv', opts)
 vim.keymap.set('v', '<S-Tab>', '<gv', opts)
 
 -- Shortcuts for boilerplate
-vim.keymap.set('n', '<C-c>1', 'oit(\'\', ()=>{<CR><CR>});<CR><ESC>?\'<CR>i') -- for tests :)
-vim.keymap.set('n', '<C-c>2', 'odescribe(\'\', ()=>{<CR><CR>});<CR><ESC>?\'<CR>iwhen') -- for tests :)
+vim.keymap.set('n', '<C-c>1', 'odescribe(\'\', ()=>{<CR>});<CR><ESC>?\'<CR>i') -- for tests :)
+vim.keymap.set('n', '<C-c>2', 'oit(\'\', ()=>{<CR>});<CR><ESC>?\'<CR>i') -- for tests :)
+vim.keymap.set('n', '<C-c>3', 'oconst interestingName = () => {<CR>};<ESC>?interestingName<CR>cw') -- for tests :)
