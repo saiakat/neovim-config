@@ -24,7 +24,7 @@ opt.number = true             -- Show line number
 opt.relativenumber = true -- add numbers to each line on the left side
 opt.showmatch = true          -- Highlight matching parenthesis
 opt.foldmethod = 'marker'     -- Enable folding (default 'foldmarker')
-opt.colorcolumn = '80'        -- Line lenght marker at 80 columns
+opt.colorcolumn = '140'        -- Line lenght marker at 80 columns
 opt.splitright = true         -- Vertical split to the right
 opt.splitbelow = true         -- Horizontal split to the bottom
 opt.ignorecase = true         -- Ignore case letters when search
@@ -37,15 +37,15 @@ opt.laststatus = 3            -- Set global statusline
 -- Tabs, indent
 -----------------------------------------------------------
 opt.expandtab = true   -- Use spaces instead of tabs
-opt.shiftwidth = 2     -- Shift 4 spaces when tab
-opt.tabstop = 2        -- 1 tab == 4 spaces
+opt.shiftwidth = 2     -- Shift 2 spaces when tab
+opt.tabstop = 2        -- 1 tab == 2 spaces
 opt.smartindent = true -- Autoindent new lines
 
 -----------------------------------------------------------
 -- Memory, CPU
 -----------------------------------------------------------
 opt.hidden = true     -- Enable background buffers
-opt.history = 100     -- Remember N lines in history
+opt.history = 500     -- Remember N lines in history
 opt.lazyredraw = true -- Faster scrolling
 opt.synmaxcol = 240   -- Max column for syntax highlight
 opt.updatetime = 250  -- ms to wait for trigger an event
@@ -54,7 +54,5 @@ opt.updatetime = 250  -- ms to wait for trigger an event
 -----------------------------------------------------------
 opt.incsearch = true
 opt.hlsearch = false
-opt.ignorecase = true
-opt.smartcase = true
 
-vim.diagnostic.config({ virtual_text = true })  
+vim.diagnostic.config({ virtual_text = true })
