@@ -16,7 +16,7 @@ iron.setup {
       python = {
         command = { "ipython3", "--no-autoindent" },  -- or { "ipython", "--no-autoindent" }
         format = common.bracketed_paste_python,
-        block_dividers = { "# %%", "#%%", "# In [ ]:" },
+        block_dividers = { "# %%", "#%%" },
       }
     },
     -- set the file type of the newly created repl to ft
