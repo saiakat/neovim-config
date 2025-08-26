@@ -38,7 +38,12 @@ return require('lazy').setup({
   dependencies = { "nvim-lua/plenary.nvim" }
   },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-
+  {'Vigemus/iron.nvim'},
+  {
+      'goerz/jupytext.nvim',
+      version = '0.2.0',
+      opts = {},  -- see Options
+  },
   -- completion
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-nvim-lsp',
