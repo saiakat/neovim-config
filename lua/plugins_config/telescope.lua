@@ -8,14 +8,23 @@ vim.keymap.set('n', '<Space>fg', builtin.live_grep, { noremap = true, silent = t
 vim.keymap.set('n', '<Space>fh', builtin.help_tags, { noremap = true, silent = true })
 
 telescope.setup {
-    pickers = {
-    find_files = {
-        hidden = true
-        }
+  extensions = {
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+      -- the default case_mode is "smart_case"
     }
+  },
+  pickers = {
+    find_files = {
+      hidden = true
+      }
+  },
 }
-local harpoon = require("harpoon")
 
+local harpoon = require("harpoon")
 -- REQUIRED
 harpoon:setup()
 -- REQUIRED
@@ -54,3 +63,4 @@ end
 
 vim.keymap.set("n", "<space>e", function() toggle_telescope(harpoon:list()) end,
     { desc = "Open harpoon window" })
+telescope.load_extension('fzf')

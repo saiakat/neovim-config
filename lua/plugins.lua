@@ -16,33 +16,34 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 return require('lazy').setup({
-    "folke/tokyonight.nvim",
-    {'rose-pine/neovim', as = 'rose-pine'},
-    {"catppuccin/nvim", as = "catppuccin"},
+  "folke/tokyonight.nvim",
+  {'rose-pine/neovim', as = 'rose-pine'},
+  {"catppuccin/nvim", as = "catppuccin"},
 
-    {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
-    'nvim-tree/nvim-tree.lua',
-    'nvim-tree/nvim-web-devicons',
-    'nvim-lualine/lualine.nvim',
+  {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+  'nvim-tree/nvim-tree.lua',
+  'nvim-tree/nvim-web-devicons',
+  'nvim-lualine/lualine.nvim',
 
-    {"nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" }
-    },
-    { "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
-        "neovim/nvim-lspconfig"
-    },
-    {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim" }
-    },
+  {"nvim-telescope/telescope.nvim",
+  dependencies = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" }
+  },
+  { "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "neovim/nvim-lspconfig"
+  },
+  {
+  "ThePrimeagen/harpoon",
+  branch = "harpoon2",
+  dependencies = { "nvim-lua/plenary.nvim" }
+  },
+  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 
-    -- completion
-    'hrsh7th/nvim-cmp',
-    'hrsh7th/cmp-nvim-lsp',
-    'saadparwaiz1/cmp_luasnip',
-    'L3MON4D3/LuaSnip',
-    'rafamadriz/friendly-snippets',
-    'github/copilot.vim',
+  -- completion
+  'hrsh7th/nvim-cmp',
+  'hrsh7th/cmp-nvim-lsp',
+  'saadparwaiz1/cmp_luasnip',
+  'L3MON4D3/LuaSnip',
+  'rafamadriz/friendly-snippets',
+  'github/copilot.vim',
 })
