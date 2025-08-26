@@ -32,6 +32,11 @@ return require('lazy').setup({
         "williamboman/mason-lspconfig.nvim",
         "neovim/nvim-lspconfig"
     },
+    {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" }
+    },
 
     -- completion
     'hrsh7th/nvim-cmp',
