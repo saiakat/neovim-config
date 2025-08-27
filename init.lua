@@ -6,4 +6,3 @@ require('lsp')
 require('plugins_config')
 require('colors')
 require('auto_sync_lazy')
-vim.opt.clipboard = 'unnamedplus'
