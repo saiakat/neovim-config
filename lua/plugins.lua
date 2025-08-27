@@ -38,6 +38,16 @@ return require('lazy').setup({
   },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   {'Vigemus/iron.nvim'},
+  -- git integration
+  {
+  "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",         -- required
+      "sindrets/diffview.nvim",        -- optional - Diff integration
+
+      "nvim-telescope/telescope.nvim", -- optional
+    },
+  },
   -- completion
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-nvim-lsp',
