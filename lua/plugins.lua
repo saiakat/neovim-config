@@ -38,6 +38,12 @@ return require('lazy').setup({
   },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   {'Vigemus/iron.nvim'},
+  {
+    'geg2102/nvim-jupyter-client',
+    config = function()
+        require('nvim-jupyter-client').setup({})
+    end
+  },
   -- git integration
   {
   "NeogitOrg/neogit",
