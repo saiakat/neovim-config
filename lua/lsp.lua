@@ -7,6 +7,12 @@ require('mason-lspconfig').setup({
     "pyright",
     "lua_ls",
     "yamlls",
+    "ts_ls",
+    "html",
+    "cssls",
+    "jsonls",
+    "clangd",
+    "bashls",
       -- Add more LSP server names as needed
   },
   -- Handlers for configuring LSP servers with nvim-lspconfig
