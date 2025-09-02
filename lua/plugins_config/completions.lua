@@ -8,6 +8,8 @@ cmp.setup({
     ['<C-o>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<C-Space>'] = cmp.mapping.confirm({ select = true }),
+    ['<A-k>'] = cmp.mapping.select_prev_item(),
+    ['<A-j>'] = cmp.mapping.select_next_item(),
   }),
   snippet = {
     expand = function(args)
@@ -30,3 +32,4 @@ cmp.setup({
     end
   end,
 })
+
