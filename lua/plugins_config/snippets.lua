@@ -11,12 +11,6 @@ local d = ls.dynamic_node
 local sn = ls.snippet_node
 
 ls.add_snippets("lua", {
-    s("hello", {
-        t('print("hello '),
-        i(1),
-        t(' world")')
-    }),
-
     s("if", {
         t('if '),
         i(1, "true"),
@@ -41,4 +35,11 @@ ls.add_snippets("javascriptreact", {
     const {} = () => {{
     }};
     ]], {i(1)})),
+
+  s("bfa", fmt([[
+    beforeAll(() => {{
+      {}
+    }});
+    ]], {i(1)})),
 })
+
