@@ -34,4 +34,6 @@ vim.keymap.set('v', '<C-k>', ':m \'<-2<CR>gv=gv', opts)
 -- Add tab in front of all selected lines
 vim.keymap.set('v', '<Tab>', '>gv', opts)
 vim.keymap.set('v', '<S-Tab>', '<gv', opts)
-
+-- error handling in go
+vim.keymap.set('n', '<space>re', 'oif err != nil {<CR>return err<CR>}<Esc>', opts)
+vim.keymap.set('n', '<space>rr', 'oif err != nil {<CR>}<Esc>O', opts)

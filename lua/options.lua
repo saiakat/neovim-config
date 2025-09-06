@@ -54,5 +54,7 @@ opt.updatetime = 250  -- ms to wait for trigger an event
 -----------------------------------------------------------
 opt.incsearch = true
 opt.hlsearch = false
-
+-- enable diagnostic text 
 vim.diagnostic.config({ virtual_text = true })
+-- keep same cursor in all modes
+vim.opt.guicursor = "n-v-i-c:block"
