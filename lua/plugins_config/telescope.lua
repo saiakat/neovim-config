@@ -29,16 +29,20 @@ local harpoon = require("harpoon")
 harpoon:setup()
 -- REQUIRED
 
+local function jump_file(number)
+  harpoon:list():select(number)
+end
+
 -- harpoon keymaps
 vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
 vim.keymap.set("n", "<leader>e", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
-vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
-vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
-vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
-vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
-vim.keymap.set("n", "<leader>5", function() harpoon:list():select(5) end)
-vim.keymap.set("n", "<leader>6", function() harpoon:list():select(6) end)
+vim.keymap.set("n", "<leader>1", function() jump_file(1) end)
+vim.keymap.set("n", "<leader>2", function() jump_file(2) end)
+vim.keymap.set("n", "<leader>3", function() jump_file(3) end)
+vim.keymap.set("n", "<leader>4", function() jump_file(4) end)
+vim.keymap.set("n", "<leader>5", function() jump_file(5) end)
+vim.keymap.set("n", "<leader>6", function() jump_file(6) end)
 
 -- Toggle previous & next buffers stored within Harpoon list
 vim.keymap.set("n", "<leader>s", function() harpoon:list():prev() end)

@@ -16,7 +16,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 return require('lazy').setup({
-  "folke/tokyonight.nvim",
   {'rose-pine/neovim', as = 'rose-pine'},
   {"catppuccin/nvim", as = "catppuccin"},
 
