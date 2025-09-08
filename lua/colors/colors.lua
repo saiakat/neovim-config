@@ -1,3 +1,5 @@
+local completion = require('colors.command_completions')
+
 local function set_colors(color, background)
   local defaults = {
     scheme="rose-pine-moon",
@@ -17,8 +19,6 @@ local function set_colors(color, background)
   vim.api.nvim_set_hl(0, "NormalFloat", { bg=background })
   vim.api.nvim_set_hl(0, "NormalNC",    { bg=background })
 end
-
-local completion = require('lua.command_completions')
 
 vim.api.nvim_create_user_command(
  'Colors',

@@ -1,5 +1,5 @@
-local builtin = require('telescope.builtin')
 local telescope = require('telescope')
+local builtin = require('telescope.builtin')
 
 -- telescope keymaps
 vim.keymap.set('n', '<c-p>', builtin.find_files, { noremap = true, silent = true })
@@ -68,3 +68,13 @@ end
 vim.keymap.set("n", "<space>e", function() toggle_telescope(harpoon:list()) end,
     { desc = "Open harpoon window" })
 telescope.load_extension('fzf')
+
+-- Adds command for jumping harpoon files
+vim.api.nvim_create_user_command(
+ 'Hjump',
+ function (opts)
+  local entry = tonumber(opts.args)
+  harpoon:list():select(entry)
+ end,
+ { nargs = 1 }
+)
