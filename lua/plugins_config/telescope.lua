@@ -22,6 +22,9 @@ telescope.setup {
       hidden = true
       }
   },
+  defaults = {
+    file_ignore_patterns = { "%.env" },
+  },
 }
 
 local harpoon = require("harpoon")
