@@ -2,7 +2,7 @@ local M = {}
 
 function M.completer(arg_lead, cmd_line)
   local candidates_color = vim.fn.getcompletion('', 'color')
-  local candidates_background = { "none", "black" }
+  local candidates_background = { "none", "black", "rose", "tokyo"  }
   local suggestions = {}
 
   -- Split the command line to count arguments

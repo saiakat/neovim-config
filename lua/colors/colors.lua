@@ -1,23 +1,26 @@
 local completion = require('colors.command_completions')
+local utils = require('colors.utils')
 
 local function set_colors(color, background)
   local defaults = {
     scheme="rose-pine-moon",
     back="none",
   }
-  if color == '.' then
+
+  if not utils.contains(utils.colors, color) then
     color = defaults.scheme
   end
-  if background == '.' then
+  if utils.backgrounds[background] ~= nil then
+    background = utils.backgrounds[background]
+  else
     background = defaults.back
   end
-  color = color or defaults.scheme
-  background = background or defaults.back
-  vim.cmd.colorscheme(color);
 
+  vim.cmd.colorscheme(color);
   vim.api.nvim_set_hl(0, "Normal", { bg=background })
   vim.api.nvim_set_hl(0, "NormalFloat", { bg=background })
   vim.api.nvim_set_hl(0, "NormalNC",    { bg=background })
+
 end
 
 vim.api.nvim_create_user_command(
