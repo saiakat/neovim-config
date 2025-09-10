@@ -27,25 +27,37 @@ return require('lazy').setup({
   {"nvim-telescope/telescope.nvim",
   dependencies = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" }
   },
-  { "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      "neovim/nvim-lspconfig"
+  {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig"
   },
   {
-  "ThePrimeagen/harpoon",
-  branch = "harpoon2",
-  dependencies = { "nvim-lua/plenary.nvim" }
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" }
   },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   --{'Vigemus/iron.nvim'},
   -- git integration 
   {
-  "NeogitOrg/neogit",
+    "NeogitOrg/neogit",
     dependencies = {
       "nvim-lua/plenary.nvim",         -- required
       "sindrets/diffview.nvim",        -- optional - Diff integration
       "nvim-telescope/telescope.nvim", -- optional
     },
+  },
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "marilari88/neotest-vitest",
+      "nvim-neotest/neotest-plenary",
+      "nvim-neotest/nvim-nio",
+    }
   },
   -- completion
   'hrsh7th/nvim-cmp',
