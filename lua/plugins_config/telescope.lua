@@ -23,7 +23,7 @@ telescope.setup {
       }
   },
   defaults = {
-    file_ignore_patterns = { "%.env" },
+    file_ignore_patterns = { "%.git" },
   },
 }
 
