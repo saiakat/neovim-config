@@ -13,6 +13,7 @@ require('mason-lspconfig').setup({
     "jsonls",
     "clangd",
     "bashls",
+    "gopls",
       -- Add more LSP server names as needed
   },
   -- Handlers for configuring LSP servers with nvim-lspconfig
