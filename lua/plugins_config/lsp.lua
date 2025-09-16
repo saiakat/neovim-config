@@ -2,19 +2,20 @@ require('mason').setup({
   -- Optional: Configure Mason's general settings here
 })
 
+local servers = {
+  "pyright",
+  "lua_ls",
+  "yamlls",
+}
+local lspconfig = require('lspconfig')
+
 require('mason-lspconfig').setup({
   -- List of LSP servers to automatically install if not present
-  ensure_installed = {
-    "pyright",
-    "lua_ls",
-    "yamlls",
-      -- Add more LSP server names as needed
-  },
-  -- Handlers for configuring LSP servers with nvim-lspconfig
-  handlers = {
-      function(server_name)
-          require('lspconfig')[server_name].setup({})
-      end,
+  ensure_installed = servers,
+  -- exclude automatic server startup and attachment
+  -- It caused duplicated server attachment.
+  automatic_enable = {
+    exclude = servers,
   },
 })
 
@@ -30,14 +31,31 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-require("lspconfig").lua_ls.setup({
+local function create_handler(settings)
+  local config = {
     on_attach = on_attach,
     capabilities = capabilities,
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { "vim" },
-            },
-        },
+    settings = settings
+  }
+  return config
+end
+
+lspconfig.lua_ls.setup(create_handler({
+  Lua = {
+    diagnostics = {
+      globals = { "vim" },
     },
-})
+  },
+}))
+
+lspconfig.pyright.setup(create_handler({
+  python = {
+    analysis = {
+      autoSearchPaths = true,
+      diagnosticMode = "openFilesOnly",
+      useLibraryCodeForTypes = true
+    }
+  }
+}))
+
+lspconfig["yamlls"].setup(create_handler())

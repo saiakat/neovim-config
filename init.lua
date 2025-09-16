@@ -2,7 +2,6 @@ require('options')
 require('keymaps')
 require('plugins')
 require('colorscheme')
-require('lsp')
 require('plugins_config')
 require('auto_sync_lazy')
 
