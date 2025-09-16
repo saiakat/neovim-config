@@ -31,24 +31,25 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local function create_handler(settings)
-  local config = {
+-- takes the name of the server as a string and other settings and cmd if needed as objects
+local function create_handler(server, settings, cmd)
+  lspconfig[server].setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    settings = settings
-  }
-  return config
+    settings = settings,
+    cmd = cmd,
+  })
 end
 
-lspconfig.lua_ls.setup(create_handler({
+create_handler("lua_ls",{
   Lua = {
     diagnostics = {
       globals = { "vim" },
     },
   },
-}))
+})
 
-lspconfig.pyright.setup(create_handler({
+create_handler("pyright", {
   python = {
     analysis = {
       autoSearchPaths = true,
@@ -56,6 +57,6 @@ lspconfig.pyright.setup(create_handler({
       useLibraryCodeForTypes = true
     }
   }
-}))
+})
 
-lspconfig["yamlls"].setup(create_handler())
+create_handler("yamlls")
