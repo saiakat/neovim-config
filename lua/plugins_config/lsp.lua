@@ -1,9 +1,8 @@
 require('mason').setup({
   -- Optional: Configure Mason's general settings here
 })
-require('mason-lspconfig').setup({
-  -- List of LSP servers to automatically install if not present
-  ensure_installed = {
+
+local servers = {
     "pyright",
     "lua_ls",
     "yamlls",
@@ -14,14 +13,26 @@ require('mason-lspconfig').setup({
     "clangd",
     "bashls",
     "gopls",
-      -- Add more LSP server names as needed
-  },
-  -- Handlers for configuring LSP servers with nvim-lspconfig
-  handlers = {
-      function(server_name)
-          require('lspconfig')[server_name].setup({})
-      end,
-  },
+    "eslint",
+}
+
+local servers_with_basic_setup = {
+  "html",
+  "gopls",
+  "cssls",
+  "bashls",
+  "eslint",
+}
+
+local lspconfig = require('lspconfig')
+
+require('mason-lspconfig').setup({
+  -- List of LSP servers to automatically install if not present
+  ensure_installed = servers,
+  -- don't auto start servers as they get started below which creates duplicates
+  automatic_enable = {
+    exclude = servers
+  }
 })
 
 local on_attach = function (_ , _)
@@ -36,73 +47,48 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-require("lspconfig").lua_ls.setup({
+local function create_handler(server, settings, cmd)
+  lspconfig[server].setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { "vim" },
-            },
-        },
+    settings = settings,
+    cmd = cmd,
+  })
+end
+
+create_handler("lua_ls", {
+  Lua = {
+    diagnostics = {
+      globals = { "vim" },
     },
+  },
 })
 
-require("lspconfig").clangd.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    cmd = { "clangd", "--background-index" },
-})
+create_handler("clangd", {},{ "clangd", "--background-index" })
 
-require("lspconfig").ts_ls.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        codeActionOnSave = {
-            enable = true,
-            source = {
-                organizeImports = true,
-            },
-        },
-        TypeScript = {
-            tsconfig = "tsconfig.json",
-        },
+create_handler("ts_ls", {
+  codeActionOnSave = {
+    enable = true,
+    source = {
+      organizeImports = true,
     },
+  },
+  TypeScript = {
+    tsconfig = "tsconfig.json",
+  },
 })
 
-require("lspconfig").pyright.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    python = {
-      analysis = {
-        autoSearchPaths = true,
-        diagnosticMode = "openFilesOnly",
-        useLibraryCodeForTypes = true
-      }
+create_handler("pyright", {
+  python = {
+    analysis = {
+      autoSearchPaths = true,
+      diagnosticMode = "openFilesOnly",
+      useLibraryCodeForTypes = true
     }
   }
 })
 
-require("lspconfig").html.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-})
+for _, entry in ipairs(servers_with_basic_setup) do
+  create_handler(entry)
+end
 
--- lsp for zig 
-require("lspconfig").zls.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-})
-
---lsp for go
-require("lspconfig").gopls.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-})
-
---lsp for css
-require("lspconfig").cssls.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-})
