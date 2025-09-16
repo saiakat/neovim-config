@@ -1,0 +1,229 @@
+# ========== Neovim Cheat Sheet ==========
+
+change: edited the notation and added lsp commands in the plugin section. <CR> is enter and not Escape. Escape is <Esc>
+
+Note:
+A dash between characters means they are pressed at the same time.
+Character without a dash between them are pressed one after another.
+The <> are used for characters such as control, shift, Space.
+<C-p> means press control and p at the same time.
+<Space>fg means press space then f then g.
+
+I try to keep most standard keepmappings as vanilla as possible.
+If you are interested in viewing or changing the non plugin keymappings it is found under .config/nvim/lua/keymaps.lua.
+
+characters(self explanitory emitted):
+
+<C> - control
+<CR> - Carriage Return (Enter)
+<S> - shift
+<leader> - leader character is by default backslash, but can be changed.
+
+## switching modes ##
+
+i - enter insert mode to the left of the cursor
+a - enter insert mode to the right of the cursor
+<S-i> - enter insert mode at the first character in the line
+<S-a> - enter insert mode at the last character in the line
+o - enter insert mode in a new line below (new line is created)
+<S-o> enter insert mode in a new line above
+v - enter visual mode
+V - enter visual line mode 
+<C-v> - enter visual block mode
+<S-r> enter replace mode
+<Esc> - return to normal mode
+<C-c> - return to normal mode
+
+## normal mode ##
+
+Note:
+All motions and commands can be prefixed with a number.
+It will then be executed that number of times.
+e.g. try copying a line with <y>y and then type: 10p
+it should past your copied line 10 times.
+
+# most basic #
+:q - quit buffer
+:q! - quit buffer and discard unsaved changes
+:qa - quit all buffers
+:qa! - quit all buffers and discard unsaved changes
+:w - write buffer to file
+:wa write all buffers to files
+
+# motions #
+
+h - move cursor left
+j - move cursor down
+k - move cursor up
+l - move cursor right
+w - jump to beginning of next words(delimiters are Space dots ...)
+<S-w> - jump over next white Space (beginning of word)
+e - jump to end of word
+<S-e> - jump to next white Space (at the end of a word)
+f some character - jump to next specified character in front of the cursor in the same line
+; - jump to next character last searched with f
+<S-f>some character - jump to next specified character in behind of the cursor in the same line
+$ - jump to the end of the line
+0 - jump to the beginning of the line
+gg - jump to the beginning of the file
+go - jump to the beginning of the file
+<S-g> - jump to the end of the file
+<C-o> - jump to previous entry in jump list
+<Tab> - jump to next entry in jump list
+<C-6> - jump to last opened file
+
+Note: when holding control and pressing h, j, k, or l you jump between windows. This also goes for the file tree (see plugin section) 
+
+# commands #
+
+Note: commands can be combined with any motion.
+Below I will mention a few examples with the delete command but it is encouraged to experiment.
+Additionally commands can be suffixed by a i or a flag.
+Which should be explained by the examples below.
+Any type of deletion will result in the deleted text being copied into your clipboard unless prefixed with "_
+
+x - delete character on cursor
+r - replace character on cursore with next typed character
+s - delete character on cursor and start insert mode
+dd - delete line and copy it to clipboard
+dw - delete word from cursor position and copy to clipboard
+di( - delete everything inside the braces your cursor is inside of
+di' - delete everything inside the single quotations your cursor is inside of (usefull for strings)
+da( - delete everything inside the braces your cursor is inside of including the braces
+da' - delete everything inside the single quotations your cursor is inside of including the quotations 
+cc - delete line and enter insert mode
+c any flag or motion - delete according to motion and flag and enter insert mode
+yy - copy line
+y any flag or motion _ copy according to flag and motion
+<S-j> - bring line below up to your cursor ( I dont know how to describe this better just try it ;) )
+% - jump to the closing delimiter ( e.g. to the correspoding closing brace/curly brace/etc... )
+p - paste
+. - repeat last modifying action
+u - undo last change
+<C-r> - redo last undone change
+/ - enter search mode (searches are not case sensitive unless you capitalize letters)
+n - repeat last search
+m letter - sets a mark in the  current buffer saved to that letter
+' letter - jumps to corresponding mark
+<C-g> - shows filepath in statusbar (at the bottom of the screen)
+: - enter vim command line
+
+# vim command line #
+
+Note:
+commands are simply executed after pressing enter
+
+s/search_term/replace_term/ - searches for first instance of search_term in same line as cursor and replaces it with replace_term.
+                              a g can be added at the end for global which search and replaces all instances of search_term in the line.
+                              the c flag can be added to require an approval by pressing y for each found instance of search_term.
+%s/search_term/replace_term/ - searches for first instance of search_term in all lines in the file and replaces them with replace_term.
+                               The same flags (g and c) can be set at the end with the same effect.
+
+Lazy - opens Lazy (plugin manager)
+Lazy sync - update/sync all plugins
+Mason - opens Mason (lsp manager)
+any number - jumps to that line number
+Neogit - opens git integration plugin
+
+## insert mode ##
+
+<Esc> - go back to normal mode
+<C-c> - go back to normal mode
+<C-j> - inserts new line and brings cursor there
+
+## visual mode ##
+
+Note:
+Commands from normal mode that delete or paste will delete or paste over the selected area.
+Just as in normal mode deletions will be copied to the clipboard.
+Any of the motions can be used.
+
+p - paste over selection 
+<S-p> - paste over selection but dont copy selection to clipboard
+c - delte selection and enter insert mode
+d - delte selection
+x - delete selection
+i followed by motion or delimiters ( e.g. (, [, {, ', ", etc... ) - selects area according to motion or inside the delimiters
+a followed by motion or delimiters - selects area according to motion or inside the delimiters including the delimiter
+<Tab> - indents selected line
+<S-Tab> - removed one indent from line
+> - indents selected line
+< - removed one indent from line
+<C-j> - move selected lines down
+<C-k> - move selected lines up
+gc - comment or uncomment selected lines
+
+## plugin specific ##
+Note: 
+Most keymappings in the sections above are vanilla. The following section have a lot of custom keymaps,
+which is common practice with plugins. So if you want to change keymappings.
+Most can be found and changed in the lua/plugins_config folder in the respective .lua file of the plugin. 
+# file exploration and navigation #
+
+Note:
+navigation between files in the list in telescope can be done with the arrow keys.
+Otherwise you can leave insert mode with Escape and then navigate the list with j and k.
+Press enter on a file to jump to that file.
+
+- Telescope -
+<C-p> - open telescope to search for file names
+<Space>fg - open telescope to fuzzy find terms inside of files
+<C-Space> - this done inside a fuzzy search when you are still in insert mode. It will let you filter the search results more.
+<C-q> - send selection to quickfix list. 
+<C-c> - close telescope
+<Esc><Esc> - close telescope. 
+:cfdo %s/search_term/replace_term/g | update - while inside quickfix list this is a global search replace in all files in the quickfix list
+
+- NvimTree -
+
+<C-n> - toggle file tree
+o - open folder/file
+<CR> - open folder/file
+<C-f> - shows currently open file in tree and jumps cursor to it
+
+- Harpoon - 
+
+<leader>a - add file to harpoon list
+<leader>1 to 6 - jump to file in that harpoon list position
+<leader>e - open harpoon list. Modification possible with normal nvim commands
+<Space>e - open harpoon list in telescope
+
+# language server #
+- lsp -
+
+gd - go to definition. Jumps to file or line where variable/function is defined
+gi - got to implementation. Jumps to implementation.
+<S-k> - Shows small window with variabe/function definition
+gr - opens lsp references in telescop:
+
+## Peach ##
+- iron nvim (repl) -
+
+Documentation:
+--> https://github.com/Vigemus/iron.nvim/blob/master/doc/iron.txt
+
+<space>sn - execute cell and move to next
+<space>sb - execute cell and without moving to next 
+<space>cl - clear repl output
+<space>rr - toggles the repl open and closed.
+<space>rR - calls `IronRestart` to restart the repl
+<space>sc - send_motion 
+<space>sc - visual_send 
+<space>sf - send_file 
+<space>sl - send_line 
+<space>sp - send_paragraph 
+<space>su - send_until_cursor 
+<space>sm - send_mark 
+<space>mc - mark_motion 
+<space>mc - mark_visual 
+<space>md - remove_mark 
+<space>s<cr> - cr 
+<space>s<space> - interrupt 
+<space>sq - exit 
+<space>cl - clear 
+
+## macros ## 
+
+q letter - records macro into the corresponding register
+q - stop recording macro
+@ letter - executes corresponding macro
