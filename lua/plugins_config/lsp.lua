@@ -70,6 +70,20 @@ require("lspconfig").ts_ls.setup({
     },
 })
 
+require("lspconfig").pyright.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = "openFilesOnly",
+        useLibraryCodeForTypes = true
+      }
+    }
+  }
+})
+
 require("lspconfig").html.setup({
     on_attach = on_attach,
     capabilities = capabilities,
