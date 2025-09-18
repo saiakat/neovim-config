@@ -24,7 +24,7 @@ local servers_with_basic_setup = {
   "eslint",
 }
 
-local lspconfig = require('lspconfig')
+local lsp = vim.lsp
 
 require('mason-lspconfig').setup({
   -- List of LSP servers to automatically install if not present
@@ -48,12 +48,13 @@ end
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local function create_handler(server, settings, cmd)
-  lspconfig[server].setup({
+  lsp.config(server,{
     on_attach = on_attach,
     capabilities = capabilities,
     settings = settings,
     cmd = cmd,
   })
+  lsp.enable(server)
 end
 
 create_handler("lua_ls", {
