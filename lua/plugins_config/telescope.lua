@@ -1,6 +1,10 @@
 local telescope = require('telescope')
 local builtin = require('telescope.builtin')
 
+vim.keymap.set("n", "<space>fb", function()
+	require("telescope").extensions.file_browser.file_browser()
+end)
+
 -- telescope keymaps
 vim.keymap.set('n', '<c-p>', builtin.find_files, { noremap = true, silent = true })
 vim.keymap.set('n', '<Space><Space>', builtin.oldfiles, { noremap = true, silent = true })
@@ -15,7 +19,10 @@ telescope.setup {
       override_file_sorter = true,     -- override the file sorter
       case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
       -- the default case_mode is "smart_case"
-    }
+    },
+    file_browser = {
+      hijack_netrw = true,
+    },
   },
   pickers = {
     find_files = {
