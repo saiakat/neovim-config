@@ -7,7 +7,7 @@ local servers = {
   "lua_ls",
   "yamlls",
 }
-local lspconfig = require('lspconfig')
+local lsp = vim.lsp
 
 require('mason-lspconfig').setup({
   -- List of LSP servers to automatically install if not present
@@ -33,12 +33,13 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- takes the name of the server as a string and other settings and cmd if needed as objects
 local function create_handler(server, settings, cmd)
-  lspconfig[server].setup({
+  lsp.config(server,{
     on_attach = on_attach,
     capabilities = capabilities,
     settings = settings,
     cmd = cmd,
   })
+  lsp.enable(server)
 end
 
 create_handler("lua_ls",{
