@@ -172,6 +172,7 @@ Press enter on a file to jump to that file.
 <C-q> - send selection to quickfix list. 
 <C-c> - close telescope
 <Esc><Esc> - close telescope. 
+gr - open lsp references in telescope
 :cfdo %s/search_term/replace_term/g | update - while inside quickfix list this is a global search replace in all files in the quickfix list
 
 - NvimTree -
@@ -194,7 +195,8 @@ o - open folder/file
 gd - go to definition. Jumps to file or line where variable/function is defined
 gi - got to implementation. Jumps to implementation.
 <S-k> - Shows small window with variabe/function definition
-gr - opens lsp references in telescop:
+gr - opens lsp references in telescope
+<leader>rn - rename variable globally
 
 ## Peach ##
 - iron nvim (repl) -
@@ -221,6 +223,17 @@ Documentation:
 <space>s<space> - interrupt 
 <space>sq - exit 
 <space>cl - clear 
+
+- Jupyter -
+
+<leader>ja - Add Jupyter cell below
+<leader>jA - Add Jupyter cell above
+<leader>jd - Remove current Jupyter cell
+<leader>jm - Merge with cell above
+<leader>jM - Merge with cell below
+<leader>jt - Convert cell type (code/markdown)
+<leader>jm - Merge selected cells
+<leader>jD - Delete cell under cursor and store in register
 
 ## macros ## 
 
