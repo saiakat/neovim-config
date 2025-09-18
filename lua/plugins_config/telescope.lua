@@ -6,9 +6,9 @@ vim.keymap.set("n", "<space>fb", function()
 end)
 
 -- telescope keymaps
-vim.keymap.set('n', '<c-p>', builtin.find_files, { noremap = true, silent = true })
+vim.keymap.set('n', '<c-p>', function() builtin.find_files({ hidden = true }) end, { noremap = true, silent = true })
 vim.keymap.set('n', '<Space><Space>', builtin.oldfiles, { noremap = true, silent = true })
-vim.keymap.set('n', '<Space>fg', builtin.live_grep, { noremap = true, silent = true })
+vim.keymap.set('n', '<Space>fg', function() builtin.live_grep({ additional_args = { "--hidden" } }) end, { noremap = true, silent = true })
 vim.keymap.set('n', '<Space>fh', builtin.help_tags, { noremap = true, silent = true })
 
 telescope.setup {
@@ -21,11 +21,12 @@ telescope.setup {
       -- the default case_mode is "smart_case"
     },
     file_browser = {
+      hidden = true,
       hijack_netrw = true,
     },
   },
   defaults = {
-    file_ignore_patterns = { "%.git", "/node_modules" },
+    file_ignore_patterns = { "%.git/", "node_modules/" },
     layout_strategy = "vertical",
     layout_config = { width = 0.5 },
   },
