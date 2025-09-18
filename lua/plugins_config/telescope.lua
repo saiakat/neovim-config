@@ -26,9 +26,8 @@ telescope.setup {
   },
   defaults = {
     file_ignore_patterns = { "%.git", "/node_modules" },
-    theme = 'dropdown',
+    layout_strategy = "vertical",
     layout_config = { width = 0.5 },
-    hidden = true,
   },
 }
 
