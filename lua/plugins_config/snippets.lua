@@ -37,9 +37,16 @@ ls.add_snippets("javascriptreact", {
     ]], {i(1)})),
 
   s("bfa", fmt([[
-    beforeAll(() => {{
+    beforeall(() => {{
       {}
     }});
+    ]], {i(1)})),
+})
+
+ls.add_snippets("javascript", {
+  s("cofu", fmt([[
+    const {} = () => {{
+    }};
     ]], {i(1)})),
 })
 
