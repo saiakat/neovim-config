@@ -24,13 +24,11 @@ telescope.setup {
       hijack_netrw = true,
     },
   },
-  pickers = {
-    find_files = {
-      hidden = true
-      }
-  },
   defaults = {
     file_ignore_patterns = { "%.git", "/node_modules" },
+    theme = 'dropdown',
+    layout_config = { width = 0.5 },
+    hidden = true,
   },
 }
 
