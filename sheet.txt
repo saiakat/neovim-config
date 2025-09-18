@@ -1,6 +1,6 @@
 # ========== Neovim Cheat Sheet ==========
 
-change: edited the notation and added lsp commands in the plugin section. <CR> is enter and not Escape. Escape is <Esc>
+change: more keymaps for plugins explained (jupyter, lsp). Changed <C-n> to <S-n> for opening file tree
 
 Note:
 A dash between characters means they are pressed at the same time.
@@ -177,7 +177,7 @@ gr - open lsp references in telescope
 
 - NvimTree -
 
-<C-n> - toggle file tree
+<S-n> - toggle file tree
 o - open folder/file
 <CR> - open folder/file
 <C-f> - shows currently open file in tree and jumps cursor to it
