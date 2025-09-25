@@ -51,7 +51,7 @@ M.servers = {
   bashls={hasconfig=false, config={}},
   gopls={hasconfig=false, config={}},
   eslint={hasconfig=false, config={}},
-  java_language_server={hasconfig=false, config={}},
+  jdtls={hasconfig=false, config={}},
 }
 
 M.names = {
@@ -66,7 +66,7 @@ M.names = {
   "bashls",
   "gopls",
   "eslint",
-  "java_language_server",
+  "jdtls",
 }
 
 for k,v in pairs(M.servers) do

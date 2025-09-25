@@ -29,12 +29,20 @@ end
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local function create_handler(server, config)
-  lsp.config(server,{
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = config.settings,
-    cmd = config.cmd
-  })
+  if config.settings ~= nil then
+    lsp.config(server,{
+      on_attach = on_attach,
+      capabilities = capabilities,
+      settings = config.settings,
+      cmd = config.cmd
+    })
+  else
+    lsp.config(server,{
+      on_attach = on_attach,
+      capabilities = capabilities,
+      cmd = config.cmd
+    })
+  end
   lsp.enable(server)
 end
 
