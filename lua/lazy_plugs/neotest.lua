@@ -8,6 +8,7 @@ return {
       "marilari88/neotest-vitest",
       "nvim-neotest/neotest-plenary",
       "nvim-neotest/nvim-nio",
+      "nvim-neotest/neotest-jest",
     }
   },
 }

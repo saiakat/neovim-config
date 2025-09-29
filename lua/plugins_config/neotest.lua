@@ -3,6 +3,7 @@ neotest.setup({
   adapters = {
     require("neotest-vitest"),
     require("neotest-plenary"),
+    require("neotest-jest"),
   },
 })
 
