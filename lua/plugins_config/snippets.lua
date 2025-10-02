@@ -37,7 +37,13 @@ ls.add_snippets("javascriptreact", {
     ]], {i(1)})),
 
   s("bfa", fmt([[
-    beforeall(() => {{
+    beforeAll(() => {{
+      {}
+    }});
+    ]], {i(1)})),
+
+  s("bfe", fmt([[
+    beforeEach(() => {{
       {}
     }});
     ]], {i(1)})),
