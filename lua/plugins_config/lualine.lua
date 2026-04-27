@@ -1,6 +1,6 @@
 require('lualine').setup({
     options = {
-        theme = 'catppuccin',
+        theme = 'rose-pine',
         icons_enabled = true,
     },
     sections = {
