@@ -16,6 +16,24 @@ local function set_colors(color, background)
     background = defaults.back
   end
 
+  if string.find(color, "tokyo") then
+    if background == "none" then
+      require("tokyonight").setup({
+        style = "night",
+        transparent = true,
+        styles = {
+          sidebars = "transparent",
+          floats = "transparent",
+        },
+      })
+    else
+      require("tokyonight").setup({
+        style = "night",
+        transparent = false,
+      })
+    end
+  end
+
   vim.cmd.colorscheme(color);
   vim.api.nvim_set_hl(0, "Normal", { bg=background })
   vim.api.nvim_set_hl(0, "NormalFloat", { bg=background })

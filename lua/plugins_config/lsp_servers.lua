@@ -31,8 +31,9 @@ local configs = {
   lua_ls = {
     settings = {
       Lua = {
+        workspaces = { Library = { "/usr/share/hypr/stubs" } },
         diagnostics = {
-          globals = { "vim" },
+          globals = { "vim", "hl" },
         },
       },
     }
