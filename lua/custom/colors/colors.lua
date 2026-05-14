@@ -65,7 +65,7 @@ vim.api.nvim_create_user_command(
  'Tokyo',
  function (opts)
   local args = vim.split(opts.args, "%s+", { trimempty = true })
-  local background = args[1]
+  local background = args[1] or "black"
   set_colors("tokyonight", background)
  end,
  {
