@@ -37,6 +37,9 @@ function M.completer(arg_lead, cmd_line)
     return {}
   end
 
+  if cmd_line:find("Tokyo", 1, true) or cmd_line:find("Cap", 1, true) then
+    candidates = candidates_background
+  end
   -- Filter candidates based on what user has typed so far
   for _, candidate in ipairs(candidates) do
     if candidate:find(arg_lead, 1, true) then -- Case-sensitive prefix match

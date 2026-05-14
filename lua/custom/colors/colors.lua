@@ -1,5 +1,5 @@
-local completion = require('colors.command_completions')
-local utils = require('colors.utils')
+local completion = require('custom.colors.command_completions')
+local utils = require('custom.colors.utils')
 
 local function set_colors(color, background)
   local defaults = {
@@ -16,6 +16,8 @@ local function set_colors(color, background)
     background = defaults.back
   end
 
+  print(background)
+
   if string.find(color, "tokyo") then
     if background == "none" then
       require("tokyonight").setup({
@@ -30,6 +32,10 @@ local function set_colors(color, background)
       require("tokyonight").setup({
         style = "night",
         transparent = false,
+        on_colors = function (colors)
+          colors.bg = background
+          colors.bg_sidebar = background
+        end
       })
     end
   end
@@ -48,6 +54,32 @@ vim.api.nvim_create_user_command(
   local color = args[1]
   local background = args[2]
   set_colors(color, background)
+ end,
+ {
+  nargs = "*",
+  complete = completion.completer,
+ }
+)
+
+vim.api.nvim_create_user_command(
+ 'Tokyo',
+ function (opts)
+  local args = vim.split(opts.args, "%s+", { trimempty = true })
+  local background = args[1]
+  set_colors("tokyonight", background)
+ end,
+ {
+  nargs = "*",
+  complete = completion.completer,
+ }
+)
+
+vim.api.nvim_create_user_command(
+ 'Cap',
+ function (opts)
+  local args = vim.split(opts.args, "%s+", { trimempty = true })
+  local background = args[1]
+  set_colors("catppuccin", background)
  end,
  {
   nargs = "*",
