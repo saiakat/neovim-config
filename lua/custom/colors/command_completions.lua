@@ -1,10 +1,14 @@
+local palette_backgrounds = require("custom.colors.palette").backgrounds
 local M = {}
 
 function M.completer(arg_lead, cmd_line)
   local candidates_color = vim.fn.getcompletion('', 'color')
-  local candidates_background = { "none", "black", "rose", "tokyo"  }
+  local candidates_background = {}
   local suggestions = {}
 
+  for k, _ in pairs(palette_backgrounds) do
+    table.insert(candidates_background, k)
+  end
   -- Split the command line to count arguments
   local args = {}
   for word in cmd_line:gmatch("%S+") do

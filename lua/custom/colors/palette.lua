@@ -16,5 +16,10 @@ M.backgrounds = {
       t = "#1a1b26",
       black = "#000000",
       b = "#000000",
+      mantle = "#181825",
+      m = "#181825",
+      crust = "#11111b",
+      c = "#11111b",
+
   }
 return M

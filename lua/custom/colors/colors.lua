@@ -1,5 +1,5 @@
 local completion = require('custom.colors.command_completions')
-local utils = require('custom.colors.utils')
+local palette = require('custom.colors.palette')
 
 local function set_colors(color, background)
   local defaults = {
@@ -7,11 +7,11 @@ local function set_colors(color, background)
     back="none",
   }
 
-  if not utils.contains(utils.colors, color) then
+  if not palette.contains(palette.colors, color) then
     color = defaults.scheme
   end
-  if utils.backgrounds[background] ~= nil then
-    background = utils.backgrounds[background]
+  if palette.backgrounds[background] ~= nil then
+    background = palette.backgrounds[background]
   else
     background = defaults.back
   end
@@ -78,7 +78,7 @@ vim.api.nvim_create_user_command(
  'Cap',
  function (opts)
   local args = vim.split(opts.args, "%s+", { trimempty = true })
-  local background = args[1]
+  local background = args[1] or "crust"
   set_colors("catppuccin", background)
  end,
  {
