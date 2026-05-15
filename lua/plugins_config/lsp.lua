@@ -6,6 +6,7 @@ local servers = {
   "pyright",
   "lua_ls",
   "yamlls",
+  "jsonls",
 }
 local lsp = vim.lsp
 
