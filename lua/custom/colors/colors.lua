@@ -3,8 +3,9 @@ local palette = require('custom.colors.palette')
 
 local function set_styles (color, background)
   if color:find("tokyo") then
+    local tokyo = require("tokyonight")
     if background == "none" then
-      require("tokyonight").setup({
+      tokyo.setup({
         style = "night",
         transparent = true,
         styles = {
@@ -13,12 +14,11 @@ local function set_styles (color, background)
         },
       })
     else
-      require("tokyonight").setup({
+      tokyo.setup({
         style = "night",
         transparent = false,
         on_colors = function (colors)
           colors.bg = background
-          colors.bg_sidebar = background
         end
       })
     end
@@ -57,6 +57,10 @@ local function set_colors(color, background)
     scheme="rose-pine-moon",
     back="none",
   }
+
+  if color == "rose-pine" then
+    color = "rose-pine-moon"
+  end
 
   if not palette.contains(palette.colors, color) then
     color = defaults.scheme
