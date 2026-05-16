@@ -52,7 +52,6 @@ local function set_styles (color, background)
 end
 
 local function set_colors(color, background)
-  print(color)
   local defaults = {
     scheme="rose-pine-moon",
     back="none",
