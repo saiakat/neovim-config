@@ -1,10 +1,22 @@
 local palette_backgrounds = require("custom.colors.palette").backgrounds
+local relevant_schemes = require("custom.colors.palette").custom_schemes
 local M = {}
 
 function M.completer(arg_lead, cmd_line)
-  local candidates_color = vim.fn.getcompletion('', 'color')
+  local all_colors = vim.fn.getcompletion('', 'color')
+  local candidates_color = {}
   local candidates_background = {}
   local suggestions = {}
+
+  for k, _ in pairs(relevant_schemes) do
+    local normalized = k
+    if k:find("_") then normalized = k:gsub("_","-") end
+    for _, v in ipairs(all_colors) do
+      if v:find(normalized, 1, true) then
+        table.insert(candidates_color, v)
+      end
+    end
+  end
 
   for k, _ in pairs(palette_backgrounds) do
     table.insert(candidates_background, k)
@@ -41,8 +53,10 @@ function M.completer(arg_lead, cmd_line)
     return {}
   end
 
-  if cmd_line:find("Tokyo", 1, true) or cmd_line:find("Cap", 1, true) then
-    candidates = candidates_background
+  for _, v in pairs(relevant_schemes) do
+    if cmd_line:find(v, 1, true) then
+      candidates = candidates_background
+    end
   end
   -- Filter candidates based on what user has typed so far
   for _, candidate in ipairs(candidates) do

@@ -16,4 +16,5 @@ return {
       require("plugins_config.treesitter")
     end,
   },
+  { 'ofirgall/ofirkai.nvim' }
 }

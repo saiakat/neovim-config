@@ -20,6 +20,15 @@ M.backgrounds = {
       m = "#181825",
       crust = "#11111b",
       c = "#11111b",
-
+      sublime = "#1f1f19",
+      s = "#1f1f19",
   }
-return M
+
+M.custom_schemes = {
+  catppuccin = "Cap",
+  tokyonight = "Tokyo",
+  rose_pine = "Rose",
+  ofirkai = "Sublime",
+}
+
+return M;
