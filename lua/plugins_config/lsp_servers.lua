@@ -31,10 +31,14 @@ local configs = {
   lua_ls = {
     settings = {
       Lua = {
-        workspaces = { Library = { "/usr/share/hypr/stubs" } },
         diagnostics = {
           globals = { "vim", "hl" },
         },
+        workspaces = {
+          Library = { "/usr/share/hypr/stubs", vim.api.nvim_get_runtime_file("", true) },
+          checkThirdParty = false,
+        },
+        telemetry = { enable = false },
       },
     }
   },

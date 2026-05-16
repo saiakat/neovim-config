@@ -6,7 +6,7 @@ require("catppuccin").setup({
     },
     transparent_background = true, -- disables setting the background color.
     show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
-    term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+   term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
     dim_inactive = {
         enabled = false, -- dims the background color of inactive window
         shade = "dark",
@@ -46,4 +46,68 @@ require("catppuccin").setup({
         -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
     },
 })
+require("monokai-pro").setup({
+  transparent_background = false,
+  terminal_colors = true,
+  devicons = true,
+  styles = {
+    comment = { italic = true },
+    keyword = { italic = true },
+    type = { italic = true },
+    storageclass = { italic = true },
+    structure = { italic = true },
+    parameter = { italic = true },
+    annotation = { italic = true },
+    tag_attribute = { italic = true },
+  },
+  filter = "pro", -- classic | octagon | pro | machine | ristretto | spectrum
+  day_night = {
+    enable = false,
+    day_filter = "pro",
+    night_filter = "spectrum",
+  },
+  inc_search = "background", -- underline | background
+  background_clear = {
+    "toggleterm",
+    "telescope",
+    "renamer",
+    "notify",
+  },
+  override = function(scheme)
+    local p = { fg = "#f92672", italic = true }
+    return {
+      ["@keyword.function"] = { fg = "#e95678" },
+      ["@variable.parameter"]                    = p,
+      ["@lsp.type.parameter"]                    = p,
+      ["@lsp.typemod.parameter.declaration"]     = p,
+      ["@punctuation.bracket"] = { fg = "#9399b2" },
+      ["@property"] = { fg = "#fff0d0" },
+      ["@constructor"] = { fg = "#9399b2" },
 
+
+    }
+  end,
+  override_palette = function(filter)
+    return {
+      dark2 = "#19181a", -- bar between tree and main buf
+      dark1 = "#191724", -- nvim tree
+      background = "#11111b", -- main background
+      text = "#fcfcfa",
+      accent1 = "#ab9df2", -- keywords and euqals
+      accent2 = "#fd971f", -- function params, braces, brackets 
+      accent3 = "#a6e22e", -- strings
+      accent4 = "#82aaff", -- functions and curlies 
+      accent5 = "#78dce8", -- nerd tree glyphs
+      accent6 = "#fd971f", -- true / false
+      dimmed1 = "#78dce8", -- file tree dir
+      dimmed2 = "#e8e8d0", -- file tree text
+      dimmed3 = "#727072", -- comments
+      dimmed4 = "#fd971f", -- line numbers vim
+      dimmed5 = "#1f1f19",
+      -- some overrides are applied and the comments reference the original state
+    }
+  end,
+  override_scheme = function(scheme, palette, colors)
+    return {}
+  end,
+})

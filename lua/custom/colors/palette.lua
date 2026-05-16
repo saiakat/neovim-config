@@ -29,6 +29,7 @@ M.custom_schemes = {
   tokyonight = "Tokyo",
   rose_pine = "Rose",
   ofirkai = "Sublime",
+  monokai_pro = "Monokai",
 }
 
 return M;

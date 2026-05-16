@@ -19,6 +19,7 @@ local function set_styles (color, background)
         transparent = false,
         on_colors = function (colors)
           colors.bg = background
+          colors.bg_sidebar = "#191724"
         end
       })
     end
@@ -48,7 +49,6 @@ local function set_styles (color, background)
       })
     end
   end
-
 end
 
 local function set_colors(color, background)
@@ -75,7 +75,6 @@ local function set_colors(color, background)
   vim.api.nvim_set_hl(0, "Normal", { bg=background })
   vim.api.nvim_set_hl(0, "NormalFloat", { bg=background })
   vim.api.nvim_set_hl(0, "NormalNC",    { bg=background })
-
 end
 
 vim.api.nvim_create_user_command(
@@ -100,8 +99,10 @@ for k, v in pairs(palette.custom_schemes) do
   vim.api.nvim_create_user_command(
     v,
     function (opts)
+      local forced_background
+      if normalized:find("monokai") then forced_background = "crust" end
       local args = vim.split(opts.args, "%s+", { trimempty = true })
-      local background = args[1] or "black"
+      local background = args[1] or forced_background or "black"
       set_colors(normalized, background)
     end,
     {
@@ -112,3 +113,21 @@ for k, v in pairs(palette.custom_schemes) do
 end
 
 set_colors()
+
+-- Keybinds -- 
+
+vim.keymap.set('n', '<leader>cc', function ()
+  set_colors("catppuccin", "crust")
+end)
+
+vim.keymap.set('n', '<leader>ct', function ()
+  set_colors("tokyonight", "black")
+end)
+
+vim.keymap.set('n', '<leader>cs', function ()
+  set_colors("monokai-pro", "crust")
+end)
+
+vim.keymap.set('n', '<leader>cr', function ()
+  set_colors("rose-pine-moon", "none")
+end)
