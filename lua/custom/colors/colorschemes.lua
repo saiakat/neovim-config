@@ -1,4 +1,8 @@
-require("catppuccin").setup({
+local palette = require("custom.colors.palette")
+local M = {}
+
+function M.catppuccin ()
+ require("catppuccin").setup({
     flavour = "mocha", -- latte, frappe, macchiato, mocha
     background = { -- :h background
         light = "latte",
@@ -40,74 +44,85 @@ require("catppuccin").setup({
         treesitter = true,
         notify = false,
         mini = {
-            enabled = true,
-            indentscope_color = "",
+        enabled = true,
+        indentscope_color = "",
         },
         -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
     },
-})
-require("monokai-pro").setup({
-  transparent_background = false,
-  terminal_colors = true,
-  devicons = true,
-  styles = {
-    comment = { italic = true },
-    keyword = { italic = true },
-    type = { italic = true },
-    storageclass = { italic = true },
-    structure = { italic = true },
-    parameter = { italic = true },
-    annotation = { italic = true },
-    tag_attribute = { italic = true },
-  },
-  filter = "pro", -- classic | octagon | pro | machine | ristretto | spectrum
-  day_night = {
-    enable = false,
-    day_filter = "pro",
-    night_filter = "spectrum",
-  },
-  inc_search = "background", -- underline | background
-  background_clear = {
-    "toggleterm",
-    "telescope",
-    "renamer",
-    "notify",
-  },
-  override = function(scheme)
-    local p = { fg = "#f92672", italic = true }
-    return {
-      ["@keyword.function"] = { fg = "#e95678" },
-      ["@variable.parameter"]                    = p,
-      ["@lsp.type.parameter"]                    = p,
-      ["@lsp.typemod.parameter.declaration"]     = p,
-      ["@punctuation.bracket"] = { fg = "#9399b2" },
-      ["@property"] = { fg = "#fff0d0" },
-      ["@constructor"] = { fg = "#9399b2" },
+  })
+end
 
 
-    }
-  end,
-  override_palette = function(filter)
-    return {
-      dark2 = "#19181a", -- bar between tree and main buf
-      dark1 = "#191724", -- nvim tree
-      background = "#11111b", -- main background
-      text = "#fcfcfa",
-      accent1 = "#ab9df2", -- keywords and euqals
-      accent2 = "#fd971f", -- function params, braces, brackets 
-      accent3 = "#a6e22e", -- strings
-      accent4 = "#82aaff", -- functions and curlies 
-      accent5 = "#78dce8", -- nerd tree glyphs
-      accent6 = "#fd971f", -- true / false
-      dimmed1 = "#78dce8", -- file tree dir
-      dimmed2 = "#e8e8d0", -- file tree text
-      dimmed3 = "#727072", -- comments
-      dimmed4 = "#fd971f", -- line numbers vim
-      dimmed5 = "#1f1f19",
-      -- some overrides are applied and the comments reference the original state
-    }
-  end,
-  override_scheme = function(scheme, palette, colors)
-    return {}
-  end,
-})
+function M.monokai (background_main, background_tree, transparent)
+  transparent = transparent or false
+  background_main = background_main or palette.backgrounds.crust
+  background_tree = background_tree or palette.backgrounds.rose
+
+  require("monokai-pro").setup({
+    transparent_background = transparent,
+    terminal_colors = true,
+    devicons = true,
+    styles = {
+      comment = { italic = true },
+      keyword = { italic = true },
+      type = { italic = true },
+      storageclass = { italic = true },
+      structure = { italic = true },
+      parameter = { italic = true },
+      annotation = { italic = true },
+      tag_attribute = { italic = true },
+    },
+    filter = "pro", -- classic | octagon | pro | machine | ristretto | spectrum
+    day_night = {
+      enable = false,
+      day_filter = "pro",
+      night_filter = "spectrum",
+    },
+    inc_search = "background", -- underline | background
+    background_clear = {
+      "toggleterm",
+      "telescope",
+      "renamer",
+      "notify",
+      "nvim-tree",
+      "neo-tree",
+    },
+    override = function(scheme)
+      local p = { fg = "#f92672", italic = true }
+      return {
+        ["@keyword.function"] = { fg = "#e95678" },
+        ["@variable.parameter"]                    = p,
+        ["@lsp.type.parameter"]                    = p,
+        ["@lsp.typemod.parameter.declaration"]     = p,
+        ["@punctuation.bracket"] = { fg = "#9399b2" },
+        ["@property"] = { fg = "#fff0d0" },
+        ["@constructor"] = { fg = "#9399b2" },
+      }
+    end,
+    override_palette = function(filter)
+      return {
+        dark2 = "#19181a", -- bar between tree and main buf
+        dark1 = background_tree, -- nvim tree
+        background = background_main, -- main background
+        text = "#fcfcfa",
+        accent1 = "#ab9df2", -- keywords and euqals
+        accent2 = "#fd971f", -- function params, braces, brackets 
+        accent3 = "#a6e22e", -- strings
+        accent4 = "#82aaff", -- functions and curlies 
+        accent5 = "#78dce8", -- nerd tree glyphs
+        accent6 = "#fd971f", -- true / false
+        dimmed1 = "#78dce8", -- file tree dir
+        dimmed2 = "#e8e8d0", -- file tree text
+        dimmed3 = "#727072", -- comments
+        dimmed4 = "#fd971f", -- line numbers vim
+        dimmed5 = "#1f1f19",
+        -- some overrides are applied and the comments reference the original state
+      }
+    end,
+    override_scheme = function(scheme, palette, colors)
+      return {}
+    end,
+  })
+end
+
+return M

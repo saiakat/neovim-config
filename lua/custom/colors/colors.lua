@@ -1,5 +1,6 @@
 local completion = require('custom.colors.command_completions')
 local palette = require('custom.colors.palette')
+local color_setup = require('custom.colors.colorschemes')
 
 local function set_styles (color, background)
   if color:find("tokyo") then
@@ -26,27 +27,15 @@ local function set_styles (color, background)
     return
   end
 
-  if color:find("ofirkai") then
-    local sublime = require('ofirkai')
-    local scheme = sublime.scheme
+  if color:find("catppuccin") then
+    color_setup.catppuccin()
+  end
 
+  if color:find("monokai") then
     if background == "none" then
-    scheme.background = ""
-    scheme.sidebar_bg = ""
-
-      sublime.setup({
-        scheme = scheme,
-        remove_italics = true,
-      })
-
+      color_setup.monokai(nil, nil, true)
     else
-      scheme.background = background
-      -- scheme.sidebar_bg = "#000000"
-
-      sublime.setup({
-        scheme = scheme,
-        remove_italics = true,
-      })
+      color_setup.monokai(background, palette.backgrounds.rose, false)
     end
   end
 end
