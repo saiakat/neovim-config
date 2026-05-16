@@ -42,18 +42,20 @@ end
 
 local function set_colors(color, background)
   local defaults = {
-    scheme="rose-pine-moon",
-    back="none",
+    -- scheme="rose-pine-moon",
+    scheme="monokai-pro",
+    -- back="none",
+    back=palette.backgrounds.crust
   }
 
   if color == "rose-pine" then
     color = "rose-pine-moon"
   end
 
-  if not palette.contains(palette.colors, color) then
+  if not palette.colors[color] then
     color = defaults.scheme
   end
-  if palette.backgrounds[background] ~= nil then
+  if palette.backgrounds[background] then
     background = palette.backgrounds[background]
   else
     background = defaults.back

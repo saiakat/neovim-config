@@ -97,6 +97,7 @@ function M.monokai (background_main, background_tree, transparent)
         ["@punctuation.bracket"] = { fg = "#9399b2" },
         ["@property"] = { fg = "#fff0d0" },
         ["@constructor"] = { fg = "#9399b2" },
+        ["DevIconJs"] = { fg = scheme.base.yellow }
       }
     end,
     override_palette = function(filter)
