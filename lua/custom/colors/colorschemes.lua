@@ -97,7 +97,14 @@ function M.monokai (background_main, background_tree, transparent)
         ["@punctuation.bracket"] = { fg = "#9399b2" },
         ["@property"] = { fg = "#fff0d0" },
         ["@constructor"] = { fg = "#9399b2" },
-        ["DevIconJs"] = { fg = scheme.base.yellow }
+        ["DevIconJs"] = { fg = scheme.base.yellow },
+        ["FloatTitle"]  = { fg = "#e8e8d0", bg = background_main },
+        ["TelescopeTitle"]        = { fg = "#e8e8d0", bg = background_main },
+        ["TelescopePromptTitle"]  = { fg = "#e8e8d0", bg = background_main },
+        ["TelescopeResultsTitle"] = { fg = "#e8e8d0", bg = background_main },
+        ["TelescopePreviewTitle"] = { fg = "#e8e8d0", bg = background_main },
+        ["@variable.builtin"] = { fg = "#e95678" },
+        ["@type.builtin"] = { fg = "#e95678" },
       }
     end,
     override_palette = function(filter)

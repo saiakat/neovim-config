@@ -52,12 +52,12 @@ local function set_colors(color, background)
     color = "rose-pine-moon"
   end
 
-  if not palette.colors[color] then
+  if not palette.contains(palette.colors, color) then
     color = defaults.scheme
   end
   if palette.backgrounds[background] then
     background = palette.backgrounds[background]
-  else
+  elseif background ~= "none" then
     background = defaults.back
   end
 
