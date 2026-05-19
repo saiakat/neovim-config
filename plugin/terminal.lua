@@ -1,6 +1,3 @@
---- Opens a centered floating window.
---- @param opts? { width?: number, height?: number }
-
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
 
 local state = {
@@ -11,12 +8,23 @@ local state = {
   current_buf = -1,
 }
 
+local default_opts = {
+  buffers = state.floating.buffers,
+  modw = 0.8,
+  modh = 0.8,
+}
+
+local function change_opts(opts)
+  default_opts.modw = opts.modw or default_opts.modw
+  default_opts.modh = opts.modh or default_opts.modh
+end
+
 local function create_float(opts)
   opts = opts or {}
   local screen_w = vim.o.columns
   local screen_h = vim.o.lines
-  local width  = opts.width  or math.floor(screen_w * 0.8)
-  local height = opts.height or math.floor(screen_h * 0.8)
+  local width  = math.floor(screen_w * opts.modw)
+  local height = math.floor(screen_h * opts.modh)
   local row = math.floor((screen_h - height) / 2)
   local col = math.floor((screen_w - width)  / 2)
 
@@ -25,10 +33,11 @@ local function create_float(opts)
   for i, buf in ipairs(buffers) do
     if not vim.api.nvim_buf_is_valid(buf) then
       buffers[i] = vim.api.nvim_create_buf(false, true)
+      state.current_buf = 1
     end
   end
 
-  local win = vim.api.nvim_open_win(buffers[1], true, {
+  local win = vim.api.nvim_open_win(buffers[state.current_buf], true, {
     relative = "editor",
     width    = width,
     height   = height,
@@ -49,9 +58,8 @@ end
 
 local function toggle_terminal ()
   if not vim.api.nvim_win_is_valid(state.floating.win) then
-    state.floating = create_float({ buffers = state.floating.buffers })
+    state.floating = create_float(default_opts)
     to_terminal(state.floating.buffers[1])
-    state.current_buf = 1
   else
     vim.api.nvim_win_hide(state.floating.win)
   end
@@ -74,14 +82,20 @@ local function switch_buf (buf, get_next)
   state.current_buf = buf
 end
 
-local function create_buffer () 
+local function create_buffer ()
   local i = #state.floating.buffers + 1
   state.floating.buffers[i] = vim.api.nvim_create_buf(false, true)
 end
 
 vim.api.nvim_create_user_command("Floaterminal", toggle_terminal, {})
 vim.keymap.set({"n", "t" }, "<leader>tt", toggle_terminal)
-vim.keymap.set({"n", "t" }, "<leader>1", function() switch_buf(1, false) end)
-vim.keymap.set({"n", "t" }, "<leader>2", function() switch_buf(2, false) end)
 vim.keymap.set({"n", "t" }, "<leader>n", function() switch_buf(state.current_buf, true) end)
 vim.keymap.set({"n", "t" }, "<leader>b", function() create_buffer() end)
+
+vim.keymap.set("t", "<leader>1", function() switch_buf(1, false) end)
+vim.keymap.set("t", "<leader>2", function() switch_buf(2, false) end)
+vim.keymap.set("n", "<space>1", function() switch_buf(1, false) end)
+vim.keymap.set("n", "<space>2", function() switch_buf(2, false) end)
+
+
+
